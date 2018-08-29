@@ -13,8 +13,12 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
+
     private FlightAdminService flightAdminService;
+
+    AdminController(FlightAdminService flightAdminService){
+        this.flightAdminService = flightAdminService;
+    }
 
     // Create new airline as well as edit existing airline
     @RequestMapping(path = "/airline", method = {RequestMethod.PUT, RequestMethod.POST } , consumes = "application/json")
