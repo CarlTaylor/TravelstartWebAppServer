@@ -13,32 +13,34 @@ import java.util.List;
 @RequestMapping("/admin")
 public class FlightAdminService {
 
-    @Autowired
+
     private AirlineRepository airlineRepository;
-
-    @Autowired
     private AirplaneRepository airplaneRepository;
-
-    @Autowired
     private AirportRepository airportRepository;
-
-    @Autowired
     private ClassRepository classRepository;
-
-    @Autowired
     private ExtraRepository extraRepository;
-
-    @Autowired
     private FlightRepository flightRepository;
-
-    @Autowired
     private PricingRepository pricingRepository;
-
-    @Autowired
     private SeatRepository seatRepository;
+    private TaxesRepository taxesRepository;
 
     @Autowired
-    private TaxesRepository taxesRepository;
+    public FlightAdminService(AirlineRepository airlineRepository, AirplaneRepository airplaneRepository,
+                              AirportRepository airportRepository, ClassRepository classRepository,
+                              ExtraRepository extraRepository, FlightRepository flightRepository,
+                              PricingRepository pricingRepository, SeatRepository seatRepository,
+                              TaxesRepository taxesRepository){
+
+        this.airlineRepository = airlineRepository;
+        this.airplaneRepository = airplaneRepository;
+        this.airportRepository = airportRepository;
+        this.classRepository = classRepository;
+        this.extraRepository = extraRepository;
+        this.flightRepository = flightRepository;
+        this.pricingRepository = pricingRepository;
+        this.seatRepository = seatRepository;
+        this.taxesRepository = taxesRepository;
+    }
 
     public void saveAirline(Airline airline){
         airlineRepository.save(airline);
