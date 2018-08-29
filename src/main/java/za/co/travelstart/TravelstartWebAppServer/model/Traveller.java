@@ -44,10 +44,7 @@ public class Traveller {
 
     public Traveller() {}
 
-    public Traveller(@Size(max = 3) String title,@Size(max = 35) String name,
-                     @Size(max = 35) String middleName, @Size(max = 35) String surname,
-                     Instant dateOfBirth, @Size(max = 254) @Email String email, User user) {
-
+    public Traveller(@Size(max = 3) String title, @Size(max = 35) String name, @Size(max = 35) String middleName, @Size(max = 35) String surname, Instant dateOfBirth, @Size(max = 254) @Email String email, User user) {
         this.title = title;
         this.name = name;
         this.middleName = middleName;

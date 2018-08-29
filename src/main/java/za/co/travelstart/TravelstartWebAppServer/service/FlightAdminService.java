@@ -7,6 +7,8 @@ import za.co.travelstart.TravelstartWebAppServer.model.*;
 import za.co.travelstart.TravelstartWebAppServer.model.Class;
 import za.co.travelstart.TravelstartWebAppServer.repository.*;
 
+import java.util.List;
+
 @Service
 @RequestMapping("/admin")
 public class FlightAdminService {
@@ -46,12 +48,20 @@ public class FlightAdminService {
         airlineRepository.deleteById(id);
     }
 
+    public List<Airline> findAllAirlineList(){
+        return airlineRepository.findAll();
+    }
+
     public void saveAirplane(Airplane airplane){
         airplaneRepository.save(airplane);
     }
 
     public void deleteAirplaneById(Long id){
         airplaneRepository.deleteById(id);
+    }
+
+    public List<Airplane> findAllAirplaneList(){
+        return airplaneRepository.findAll();
     }
 
     public void saveAirport(Airport airport){
@@ -62,12 +72,20 @@ public class FlightAdminService {
         airportRepository.deleteById(id);
     }
 
+    public List<Airport> findAllAirportList(){
+        return airportRepository.findAll();
+    }
+
     public void saveClass(Class _class){
         classRepository.save(_class);
     }
 
     public void deleteClassById(Long id){
         airlineRepository.deleteById(id);
+    }
+
+    public List<Class> findAllClassList(){
+        return classRepository.findAll();
     }
 
     public void saveExtra(Extra extra){
@@ -78,12 +96,20 @@ public class FlightAdminService {
         extraRepository.deleteById(id);
     }
 
+    public List<Extra> findAllExtraList(){
+        return extraRepository.findAll();
+    }
+
     public void saveFlight(Flight flight){
         flightRepository.save(flight);
     }
 
     public void deleteFlightById(Long id){
         flightRepository.deleteById(id);
+    }
+
+    public List<Flight> findAllFlightList(){
+        return flightRepository.findAll();
     }
 
     public void savePricing(Pricing pricing){
@@ -94,12 +120,20 @@ public class FlightAdminService {
         pricingRepository.deleteById(id);
     }
 
+    public List<Pricing> findAllPricingList(){
+        return pricingRepository.findAll();
+    }
+
     public void saveSeat(Seat seat){
         seatRepository.save(seat);
     }
 
     public void deleteSeatById(SeatId seatId){
         seatRepository.deleteById(seatId);
+    }
+
+    public List<Seat> findAllSeatList(){
+        return seatRepository.findAll();
     }
 
     public void saveTaxes(Taxes taxes){
@@ -110,4 +144,7 @@ public class FlightAdminService {
         taxesRepository.deleteById(id);
     }
 
+    public List<Taxes> findAllTaxesList(){
+        return taxesRepository.findAll();
+    }
 }

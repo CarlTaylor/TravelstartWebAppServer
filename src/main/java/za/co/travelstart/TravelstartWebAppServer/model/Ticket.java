@@ -1,6 +1,7 @@
 package za.co.travelstart.TravelstartWebAppServer.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ticket")
@@ -23,6 +24,7 @@ public class Ticket {
     @JoinColumn(name = "flight_num", nullable = false)
     private Flight flight;
 
+    // Many to one as a child can sit on an adults lap
     @ManyToOne
     @JoinColumns({
             @JoinColumn(
@@ -32,6 +34,7 @@ public class Ticket {
                     name = "class_name",
                     referencedColumnName = "class_name")
     })
+    @Size(max = 2)
     private Seat seat;
 
     public Ticket() {}
