@@ -1,10 +1,6 @@
 package za.co.travelstart.TravelstartWebAppServer.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigInteger;
 import java.time.Instant;

@@ -1,7 +1,6 @@
 package za.co.travelstart.TravelstartWebAppServer.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -20,7 +19,7 @@ public class Airplane {
     public Airplane() {}
 
     public Airplane(@Size(max = 35) String name) {
-        name = name;
+        this.name = name;
     }
 
     public Long getId() {
