@@ -16,6 +16,7 @@ public class AdminController {
 
     private FlightAdminService flightAdminService;
 
+    @Autowired
     AdminController(FlightAdminService flightAdminService){
         this.flightAdminService = flightAdminService;
     }
