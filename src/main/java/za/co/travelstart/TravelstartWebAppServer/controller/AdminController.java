@@ -8,11 +8,11 @@ import za.co.travelstart.TravelstartWebAppServer.model.Class;
 import za.co.travelstart.TravelstartWebAppServer.service.FlightAdminService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
-
 
     private FlightAdminService flightAdminService;
 
@@ -40,6 +40,16 @@ public class AdminController {
         return flightAdminService.findAllAirlineList();
     }
 
+    // return one airline by its id
+    @RequestMapping(path = "/airline/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Airline getAirline(@PathVariable("id") Long id){
+        Optional<Airline> airline = flightAdminService.findAirlineById(id);
+        if(airline.isPresent()) {
+            return airline.get();
+        }
+        throw new RuntimeException("Airline Not Found");
+    }
+
     // Create new airplane as well as edit existing airplane
     @RequestMapping(path = "/airplane", method = {RequestMethod.PUT, RequestMethod.POST } , consumes = "application/json")
     public void saveAirplane(@RequestBody Airplane airplane){
@@ -57,6 +67,16 @@ public class AdminController {
     @RequestMapping(value = "/airplane", method = RequestMethod.GET)
     public List findAllAirplaneList(){
         return flightAdminService.findAllAirplaneList();
+    }
+
+    // return one airplane by its id
+    @RequestMapping(path = "/airplane/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Airplane getAirplane(@PathVariable("id") Long id){
+        Optional<Airplane> airplane = flightAdminService.findAirplaneById(id);
+        if(airplane.isPresent()) {
+            return airplane.get();
+        }
+        throw new RuntimeException("Airplane Not Found");
     }
 
     // Create new airport as well as edit existing airport
@@ -78,6 +98,16 @@ public class AdminController {
         return flightAdminService.findAllAirportList();
     }
 
+    // return one airport by its id
+    @RequestMapping(path = "/airport/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Airport getAirport(@PathVariable("id") Long id){
+        Optional<Airport> airport = flightAdminService.findAirportById(id);
+        if(airport.isPresent()) {
+            return airport.get();
+        }
+        throw new RuntimeException("Airport Not Found");
+    }
+
     // Create new class as well as edit existing class
     @RequestMapping(path = "/class", method = {RequestMethod.PUT, RequestMethod.POST } , consumes = "application/json")
     public void saveClass(@RequestBody Class _class){
@@ -97,6 +127,16 @@ public class AdminController {
         return flightAdminService.findAllClassList();
     }
 
+    // return one class by its id
+    @RequestMapping(path = "/class/{name}", method = RequestMethod.GET, produces = "application/json")
+    public Class getClass(@PathVariable("name") String name){
+        Optional<Class> _class = flightAdminService.findClassById(name);
+        if(_class.isPresent()) {
+            return _class.get();
+        }
+        throw new RuntimeException("Class Not Found");
+    }
+
     // Create new extra as well as edit existing extra
     @RequestMapping(path = "/extra", method = {RequestMethod.PUT, RequestMethod.POST } , consumes = "application/json")
     public void saveExtra(@RequestBody Extra extra){
@@ -110,10 +150,20 @@ public class AdminController {
         flightAdminService.deleteExtraById(id);
     }
 
-    // List all classes
+    // List all extras
     @RequestMapping(value = "/extra", method = RequestMethod.GET)
     public List findAllExtraList(){
         return flightAdminService.findAllExtraList();
+    }
+
+    // return one extra by its id
+    @RequestMapping(path = "/extra/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Extra getExtra(@PathVariable("id") Long id){
+        Optional<Extra> extra = flightAdminService.findExtraById(id);
+        if(extra.isPresent()) {
+            return extra.get();
+        }
+        throw new RuntimeException("Extra Not Found");
     }
 
     // Create new flight as well as edit existing flight
@@ -135,6 +185,16 @@ public class AdminController {
         return flightAdminService.findAllFlightList();
     }
 
+    // return one flight by its id
+    @RequestMapping(path = "/flight/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Flight getFlight(@PathVariable("id") Long id){
+        Optional<Flight> flight = flightAdminService.findFlightById(id);
+        if(flight.isPresent()) {
+            return flight.get();
+        }
+        throw new RuntimeException("Flight Not Found");
+    }
+
     // Create new pricing as well as edit existing pricing
     @RequestMapping(path = "/pricing", method = {RequestMethod.PUT, RequestMethod.POST } , consumes = "application/json")
     public void savePricing(@RequestBody Pricing pricing){
@@ -152,6 +212,16 @@ public class AdminController {
     @RequestMapping(value = "/pricing", method = RequestMethod.GET)
     public List findAllPricingList(){
         return flightAdminService.findAllPricingList();
+    }
+
+    // return one pricing record by its id
+    @RequestMapping(path = "/pricing/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Pricing getPricing(@PathVariable("id") Long id){
+        Optional<Pricing> pricing = flightAdminService.findPricingById(id);
+        if(pricing.isPresent()) {
+            return pricing.get();
+        }
+        throw new RuntimeException("Pricing Not Found");
     }
 
     // Create new seat as well as edit existing seat
@@ -173,6 +243,16 @@ public class AdminController {
         return flightAdminService.findAllSeatList();
     }
 
+    // return one seat by its id
+    @RequestMapping(path = "/seat/{className}/{num}", method = RequestMethod.GET, produces = "application/json")
+    public Seat getPricing(@PathVariable("className") String className, @PathVariable("num") Long num){
+        Optional<Seat> seat = flightAdminService.findSeatById(new SeatId(num, className));
+        if(seat.isPresent()) {
+            return seat.get();
+        }
+        throw new RuntimeException("Seat Not Found");
+    }
+
     // Create new taxes as well as edit existing taxes
     @RequestMapping(path = "/taxes", method = {RequestMethod.PUT, RequestMethod.POST } , consumes = "application/json")
     public void saveTaxes(@RequestBody Taxes taxes){
@@ -190,5 +270,15 @@ public class AdminController {
     @RequestMapping(value = "/taxes", method = RequestMethod.GET)
     public List findAllTaxesList(){
         return flightAdminService.findAllTaxesList();
+    }
+
+    // return taxes record by its id
+    @RequestMapping(path = "/taxes/{id}", method = RequestMethod.GET, produces = "application/json")
+    public Taxes getTaxes(@PathVariable("id") Long id){
+        Optional<Taxes> taxes = flightAdminService.findTaxesById(id);
+        if(taxes.isPresent()) {
+            return taxes.get();
+        }
+        throw new RuntimeException("Taxes Not Found");
     }
 }

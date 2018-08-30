@@ -8,6 +8,7 @@ import za.co.travelstart.TravelstartWebAppServer.model.Class;
 import za.co.travelstart.TravelstartWebAppServer.repository.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequestMapping("/admin")
@@ -54,6 +55,10 @@ public class FlightAdminService {
         return airlineRepository.findAll();
     }
 
+    public Optional<Airline> findAirlineById(Long id) {
+        return airlineRepository.findById(id);
+    }
+
     public void saveAirplane(Airplane airplane){
         airplaneRepository.save(airplane);
     }
@@ -64,6 +69,10 @@ public class FlightAdminService {
 
     public List<Airplane> findAllAirplaneList(){
         return airplaneRepository.findAll();
+    }
+
+    public Optional<Airplane> findAirplaneById(Long id) {
+        return airplaneRepository.findById(id);
     }
 
     public void saveAirport(Airport airport){
@@ -78,6 +87,10 @@ public class FlightAdminService {
         return airportRepository.findAll();
     }
 
+    public Optional<Airport> findAirportById(Long id) {
+        return airportRepository.findById(id);
+    }
+
     public void saveClass(Class _class){
         classRepository.save(_class);
     }
@@ -88,6 +101,10 @@ public class FlightAdminService {
 
     public List<Class> findAllClassList(){
         return classRepository.findAll();
+    }
+
+    public Optional<Class> findClassById(String name) {
+        return classRepository.findById(name);
     }
 
     public void saveExtra(Extra extra){
@@ -102,6 +119,10 @@ public class FlightAdminService {
         return extraRepository.findAll();
     }
 
+    public Optional<Extra> findExtraById(Long id) {
+        return extraRepository.findById(id);
+    }
+
     public void saveFlight(Flight flight){
         flightRepository.save(flight);
     }
@@ -112,6 +133,10 @@ public class FlightAdminService {
 
     public List<Flight> findAllFlightList(){
         return flightRepository.findAll();
+    }
+
+    public Optional<Flight> findFlightById(Long id) {
+        return flightRepository.findById(id);
     }
 
     public void savePricing(Pricing pricing){
@@ -126,6 +151,10 @@ public class FlightAdminService {
         return pricingRepository.findAll();
     }
 
+    public Optional<Pricing> findPricingById(Long id) {
+        return pricingRepository.findById(id);
+    }
+
     public void saveSeat(Seat seat){
         seatRepository.save(seat);
     }
@@ -138,6 +167,10 @@ public class FlightAdminService {
         return seatRepository.findAll();
     }
 
+    public Optional<Seat> findSeatById(SeatId id) {
+        return seatRepository.findById(id);
+    }
+
     public void saveTaxes(Taxes taxes){
         taxesRepository.save(taxes);
     }
@@ -148,5 +181,9 @@ public class FlightAdminService {
 
     public List<Taxes> findAllTaxesList(){
         return taxesRepository.findAll();
+    }
+
+    public Optional<Taxes> findTaxesById(Long id) {
+        return taxesRepository.findById(id);
     }
 }
