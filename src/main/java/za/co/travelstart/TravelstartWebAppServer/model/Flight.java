@@ -37,7 +37,7 @@ public class Flight {
     @JoinColumn(name = "airplane_id", nullable = false)
     private Airplane airplane;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "taxes_id", nullable = false)
     private Taxes taxes;
 
