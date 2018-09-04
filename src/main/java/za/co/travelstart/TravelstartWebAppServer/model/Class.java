@@ -1,51 +1,40 @@
 package za.co.travelstart.TravelstartWebAppServer.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "class")
-public class Class {
+public class Class  implements Serializable {
 
-    @Id
-    @Size(max = 35)
+    @EmbeddedId
     @Column
-    private String name;
+    private ClassId classId;
 
     @Column
-    private Integer maxSeats;
+    private Long maxSeats;
 
     @Column
     private Boolean spaceAvailableFlag = true;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "airplane_id", nullable = false)
-    private Airplane airplane;
-
     public Class() {}
 
-    public Class(@Size(max = 35) String name, Integer maxSeats,
-                 Boolean spaceAvailableFlag, Airplane airplane) {
-
-        this.name = name;
-        this.maxSeats = maxSeats;
-        this.spaceAvailableFlag = spaceAvailableFlag;
-        this.airplane = airplane;
+    public ClassId getClassId() {
+        return classId;
     }
 
-    public String getName() {
-        return name;
+    public void setClassId(ClassId classId) {
+        this.classId = classId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getMaxSeats() {
+    public Long getMaxSeats() {
         return maxSeats;
     }
 
-    public void setMaxSeats(Integer maxSeats) {
+    public void setMaxSeats(Long maxSeats) {
         this.maxSeats = maxSeats;
     }
 
@@ -55,13 +44,5 @@ public class Class {
 
     public void setSpaceAvailableFlag(Boolean spaceAvailableFlag) {
         this.spaceAvailableFlag = spaceAvailableFlag;
-    }
-
-    public Airplane getAirplane() {
-        return airplane;
-    }
-
-    public void setAirplane(Airplane airplane) {
-        this.airplane = airplane;
     }
 }

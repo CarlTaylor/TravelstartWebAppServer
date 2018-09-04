@@ -16,7 +16,10 @@ public class Pricing {
     private Flight flight;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "class_name", nullable = false)
+    @JoinColumns({
+            @JoinColumn(name = "class_name", referencedColumnName = "name", nullable = false),
+            @JoinColumn(name="airplane_id", referencedColumnName = "airplane_id",  nullable = false)
+    })
     private Class _class;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

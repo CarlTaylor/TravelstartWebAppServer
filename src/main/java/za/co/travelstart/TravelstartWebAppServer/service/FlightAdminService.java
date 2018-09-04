@@ -95,16 +95,16 @@ public class FlightAdminService {
         classRepository.save(_class);
     }
 
-    public void deleteClassById(Long id){
-        airlineRepository.deleteById(id);
+    public void deleteClassById(ClassId classId){
+        classRepository.deleteById(classId);
     }
 
     public List<Class> findAllClassList(){
         return classRepository.findAll();
     }
 
-    public Optional<Class> findClassById(String name) {
-        return classRepository.findById(name);
+    public Optional<Class> findClassById(ClassId classId) {
+        return classRepository.findById(classId);
     }
 
     public void saveExtra(Extra extra){
