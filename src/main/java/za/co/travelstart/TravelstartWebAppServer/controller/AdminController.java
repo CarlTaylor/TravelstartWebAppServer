@@ -43,7 +43,7 @@ public class AdminController {
     }
 
     // List all airlines
-    @RequestMapping(value = "/airline", method = RequestMethod.GET)
+    @RequestMapping(value = "/airline", method = RequestMethod.GET, produces = "application/json")
     public List findAllAirlineList(){
         return flightAdminService.findAllAirlineList();
     }
@@ -79,7 +79,7 @@ public class AdminController {
     }
 
     // List all airplanes
-    @RequestMapping(value = "/airplane", method = RequestMethod.GET)
+    @RequestMapping(value = "/airplane", method = RequestMethod.GET, produces = "application/json")
     public List findAllAirplaneList(){
         return flightAdminService.findAllAirplaneList();
     }
@@ -115,7 +115,7 @@ public class AdminController {
     }
 
     // List all airports
-    @RequestMapping(value = "/airport", method = RequestMethod.GET)
+    @RequestMapping(value = "/airport", method = RequestMethod.GET, produces = "application/json")
     public List findAllAirportList(){
         return flightAdminService.findAllAirportList();
     }
@@ -152,7 +152,7 @@ public class AdminController {
     }
 
     // List all classes
-    @RequestMapping(value = "/class", method = RequestMethod.GET)
+    @RequestMapping(value = "/class", method = RequestMethod.GET, produces = "application/json")
     public List findAllClassList(){
         return flightAdminService.findAllClassList();
     }
@@ -188,7 +188,7 @@ public class AdminController {
     }
 
     // List all extras
-    @RequestMapping(value = "/extra", method = RequestMethod.GET)
+    @RequestMapping(value = "/extra", method = RequestMethod.GET, produces = "application/json")
     public List findAllExtraList(){
         return flightAdminService.findAllExtraList();
     }
@@ -224,7 +224,7 @@ public class AdminController {
     }
 
     // List all flights
-    @RequestMapping(value = "/flight", method = RequestMethod.GET)
+    @RequestMapping(value = "/flight", method = RequestMethod.GET, produces = "application/json")
     public List findAllFlightList(){
         return flightAdminService.findAllFlightList();
     }
@@ -260,7 +260,7 @@ public class AdminController {
     }
 
     // List all pricing
-    @RequestMapping(value = "/pricing", method = RequestMethod.GET)
+    @RequestMapping(value = "/pricing", method = RequestMethod.GET, produces = "application/json")
     public List findAllPricingList(){
         return flightAdminService.findAllPricingList();
     }
@@ -296,7 +296,7 @@ public class AdminController {
     }
 
     // List all seats
-    @RequestMapping(value = "/seat", method = RequestMethod.GET)
+    @RequestMapping(value = "/seat", method = RequestMethod.GET, produces = "application/json")
     public List findAllSeatList(){
         return flightAdminService.findAllSeatList();
     }
@@ -332,7 +332,7 @@ public class AdminController {
     }
 
     // List all taxes
-    @RequestMapping(value = "/taxes", method = RequestMethod.GET)
+    @RequestMapping(value = "/taxes", method = RequestMethod.GET, produces = "application/json")
     public List findAllTaxesList(){
         return flightAdminService.findAllTaxesList();
     }
