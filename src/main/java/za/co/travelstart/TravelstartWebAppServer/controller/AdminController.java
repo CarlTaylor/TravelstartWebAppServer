@@ -137,18 +137,18 @@ public class AdminController {
     }
 
     // Edit existing class
-    @RequestMapping(path = "/class/{airplaneId}/{name}", method = RequestMethod.PUT, consumes = "application/json")
-    public void editAirport(@PathVariable("airplaneId") Long airplaneid, @PathVariable("name") String name,
+    @RequestMapping(path = "/class/{airplaneId}/{className}", method = RequestMethod.PUT, consumes = "application/json")
+    public void editAirport(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className,
                             @RequestBody Class _class){
-        _class.setClassId(new ClassId(name, airplaneid));
+        _class.setClassId(new ClassId(airplaneId, className));
         flightAdminService.saveClass(_class);
     }
 
     // Delete class
-    @RequestMapping(value = "/class/{airplaneId}/{name}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/class/{airplaneId}/{className}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteClass(@PathVariable("airplaneId") Long airplaneId, @PathVariable("name") String name) {
-        flightAdminService.deleteClassById(new ClassId(name, airplaneId));
+    public void deleteClass(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className) {
+        flightAdminService.deleteClassById(new ClassId(airplaneId, className));
     }
 
     // List all classes
@@ -158,9 +158,9 @@ public class AdminController {
     }
 
     // return one class by its id
-    @RequestMapping(path = "/class/{airplaneId}/{name}", method = RequestMethod.GET, produces = "application/json")
-    public Class getClass(@PathVariable("airplaneId") Long airplaneId, @PathVariable("name") String name){
-        Optional<Class> _class = flightAdminService.findClassById(new ClassId(name, airplaneId));
+    @RequestMapping(path = "/class/{airplaneId}/{className}", method = RequestMethod.GET, produces = "application/json")
+    public Class getClass(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className){
+        Optional<Class> _class = flightAdminService.findClassById(new ClassId(airplaneId, className));
         if(_class.isPresent()) {
             return _class.get();
         }

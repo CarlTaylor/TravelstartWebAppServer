@@ -12,7 +12,7 @@ public class SeatId implements Serializable {
     private Long num;
 
     @Column(name="class_name")
-    private  String className;
+    private String className;
 
     public SeatId() {}
 
@@ -21,11 +21,11 @@ public class SeatId implements Serializable {
         this.className = className;
     }
 
-    public Long getNum() {
+    private Long getNum() {
         return num;
     }
 
-    public String getClassName() {
+    private String getClassName() {
         return className;
     }
 
