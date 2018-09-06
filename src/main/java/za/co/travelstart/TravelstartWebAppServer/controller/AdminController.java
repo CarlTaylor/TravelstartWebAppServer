@@ -130,9 +130,15 @@ public class AdminController {
         throw new RuntimeException("Airport Not Found");
     }
 
-    // Create and Edit existing class
-    @RequestMapping(path = "/class/{airplaneId}/{className}", method = {RequestMethod.PUT, RequestMethod.POST}, consumes = "application/json")
-    public void editAirport(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className,
+    // Create class
+    @RequestMapping(path = "/class", method = RequestMethod.POST, consumes = "application/json")
+    public void saveClass(@RequestBody Class _class){
+        flightAdminService.saveClass(_class);
+    }
+
+    // Edit existing class
+    @RequestMapping(path = "/class/{airplaneId}/{className}", method = RequestMethod.PUT, consumes = "application/json")
+    public void editClass(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className,
                             @RequestBody Class _class){
         _class.setClassId(new ClassId(airplaneId, className));
         flightAdminService.saveClass(_class);
