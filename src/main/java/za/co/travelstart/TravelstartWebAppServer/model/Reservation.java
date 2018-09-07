@@ -1,6 +1,7 @@
 package za.co.travelstart.TravelstartWebAppServer.model;
 
 import javax.persistence.*;
+import java.time.Instant;
 
 @Entity
 @Table(name = "reservation")
@@ -11,13 +12,17 @@ public class Reservation {
     @Column
     private Long id;
 
+    @Column
+    private Instant date;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Reservation() {}
 
-    public Reservation(User user) {
+    public Reservation(Instant date, User user) {
+        this.date = date;
         this.user = user;
     }
 
@@ -27,6 +32,14 @@ public class Reservation {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Instant getDate() {
+        return date;
+    }
+
+    public void setDate(Instant date) {
+        this.date = date;
     }
 
     public User getUser() {

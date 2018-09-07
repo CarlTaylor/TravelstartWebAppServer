@@ -167,6 +167,12 @@ public class AdminController {
         throw new RuntimeException("Class Not Found");
     }
 
+    // List all classes by airplane id
+    @RequestMapping(value = "/class/{airplaneId}", method = RequestMethod.GET, produces = "application/json")
+    public List findAllClassByAirplaneId(@PathVariable("airplaneId") Long airplaneId){
+        return flightAdminService.findClassesByAirplaneId(airplaneId);
+    }
+
     // Create new extra
     @RequestMapping(path = "/extra", method = RequestMethod.POST, consumes = "application/json")
     public void saveExtra(@RequestBody Extra extra){
@@ -309,6 +315,12 @@ public class AdminController {
             return seat.get();
         }
         throw new RuntimeException("Seat Not Found");
+    }
+
+    // List all seats by class name
+    @RequestMapping(value = "/seat/{className}", method = RequestMethod.GET, produces = "application/json")
+    public List findAllSeatsByClassName(@PathVariable("className") String className){
+        return flightAdminService.findSeatsByClassName(className);
     }
 
     // Create new record for taxes

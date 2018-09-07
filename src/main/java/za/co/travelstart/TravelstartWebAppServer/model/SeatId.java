@@ -21,11 +21,11 @@ public class SeatId implements Serializable {
         this.className = className;
     }
 
-    private Long getNum() {
+    public Long getNum() {
         return num;
     }
 
-    private String getClassName() {
+    public String getClassName() {
         return className;
     }
 

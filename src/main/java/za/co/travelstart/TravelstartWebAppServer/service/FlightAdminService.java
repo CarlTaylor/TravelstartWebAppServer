@@ -107,6 +107,10 @@ public class FlightAdminService {
         return classRepository.findById(classId);
     }
 
+    public List<Class> findClassesByAirplaneId(Long airplaneId){
+        return classRepository.findByClassIdAirplaneId(airplaneId);
+    }
+
     public void saveExtra(Extra extra){
         extraRepository.save(extra);
     }
@@ -169,6 +173,10 @@ public class FlightAdminService {
 
     public Optional<Seat> findSeatById(SeatId id) {
         return seatRepository.findById(id);
+    }
+
+    public List<Seat> findSeatsByClassName(String className){
+        return seatRepository.findBySeatIdClassName(className);
     }
 
     public void saveTaxes(Taxes taxes){
