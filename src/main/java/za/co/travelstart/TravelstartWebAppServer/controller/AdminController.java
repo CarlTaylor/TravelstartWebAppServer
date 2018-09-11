@@ -133,7 +133,16 @@ public class AdminController {
     // Create class
     @RequestMapping(path = "/class", method = RequestMethod.POST, consumes = "application/json")
     public void saveClass(@RequestBody Class _class){
+
         flightAdminService.saveClass(_class);
+
+        Optional<Class> classExists = flightAdminService.findClassById(_class.getClassId());
+        if(classExists.isPresent()) {
+            for(int i = 1; i < _class.getMaxSeats() + 1; i++){
+                flightAdminService.saveSeat(new Seat(new SeatId((long)i,
+                        _class.getClassId().getClassName()), true));
+            }
+        }
     }
 
     // Edit existing class
@@ -281,7 +290,7 @@ public class AdminController {
         throw new RuntimeException("Pricing Not Found");
     }
 
-    // Create new seat as well as edit existing seat
+    // Create new seat
     @RequestMapping(path = "/seat", method = RequestMethod.POST, consumes = "application/json")
     public void saveSeat(@RequestBody Seat seat){
         flightAdminService.saveSeat(seat);

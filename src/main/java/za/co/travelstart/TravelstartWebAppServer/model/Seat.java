@@ -19,6 +19,11 @@ public class Seat implements Serializable {
 
     public Seat() {}
 
+    public Seat(SeatId seatId, Boolean seatAvailableFlag) {
+        this.seatId = seatId;
+        this.seatAvailableFlag = seatAvailableFlag;
+    }
+
     public SeatId getSeatId() {
         return seatId;
     }
