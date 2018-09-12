@@ -175,8 +175,8 @@ public class FlightAdminService {
         return seatRepository.findById(id);
     }
 
-    public List<Seat> findSeatsByClassName(String className){
-        return seatRepository.findBySeatIdClassName(className);
+    public List<Seat> findBySeatIdAirplaneIdAndClassName(Long airplaneId, String className){
+        return seatRepository.findAllBySeatIdAirplaneIdAndSeatIdClassName(airplaneId, className);
     }
 
     public void saveTaxes(Taxes taxes){

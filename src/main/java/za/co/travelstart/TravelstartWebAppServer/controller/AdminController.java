@@ -139,7 +139,7 @@ public class AdminController {
         Optional<Class> classExists = flightAdminService.findClassById(_class.getClassId());
         if(classExists.isPresent()) {
             for(int i = 1; i < _class.getMaxSeats() + 1; i++){
-                flightAdminService.saveSeat(new Seat(new SeatId((long)i,
+                flightAdminService.saveSeat(new Seat(new SeatId(_class.getClassId().getAirplaneId(), (long)i,
                         _class.getClassId().getClassName()), true));
             }
         }
@@ -297,17 +297,18 @@ public class AdminController {
     }
 
     // Edit existing seat
-    @RequestMapping(path = "/seat/{className}/{num}", method = RequestMethod.PUT, consumes = "application/json")
-    public void editSeat(@PathVariable("className") String className, @PathVariable("num") Long num, @RequestBody Seat seat){
-        seat.setSeatId(new SeatId(num, className));
+    @RequestMapping(path = "/seat/{airplaneId}/{className}/{num}", method = RequestMethod.PUT, consumes = "application/json")
+    public void editSeat(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className,
+                         @PathVariable("num") Long num, @RequestBody Seat seat){
+        seat.setSeatId(new SeatId(airplaneId, num, className));
         flightAdminService.saveSeat(seat);
     }
 
     // Delete seat
-    @RequestMapping(value = "/seat/{className}/{num}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/seat/{airplaneId}/{className}/{num}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteSeat(@PathVariable("className") String className, @PathVariable("num") Long num) {
-        flightAdminService.deleteSeatById(new SeatId(num, className));
+    public void deleteSeat(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className, @PathVariable("num") Long num) {
+        flightAdminService.deleteSeatById(new SeatId(airplaneId, num, className));
     }
 
     // List all seats
@@ -317,19 +318,19 @@ public class AdminController {
     }
 
     // return one seat by its id
-    @RequestMapping(path = "/seat/{className}/{num}", method = RequestMethod.GET, produces = "application/json")
-    public Seat getPricing(@PathVariable("className") String className, @PathVariable("num") Long num){
-        Optional<Seat> seat = flightAdminService.findSeatById(new SeatId(num, className));
+    @RequestMapping(path = "/seat/{airplaneId}/{className}/{num}", method = RequestMethod.GET, produces = "application/json")
+    public Seat getPricing(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className, @PathVariable("num") Long num){
+        Optional<Seat> seat = flightAdminService.findSeatById(new SeatId(airplaneId, num, className));
         if(seat.isPresent()) {
             return seat.get();
         }
         throw new RuntimeException("Seat Not Found");
     }
 
-    // List all seats by class name
-    @RequestMapping(value = "/seat/{className}", method = RequestMethod.GET, produces = "application/json")
-    public List findAllSeatsByClassName(@PathVariable("className") String className){
-        return flightAdminService.findSeatsByClassName(className);
+    // List all seats by airplane id and class name.
+    @RequestMapping(value = "/seat/{airplaneId}/{className}", method = RequestMethod.GET, produces = "application/json")
+    public List findAllSeatsByAirplaneIdAndClassName(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className){
+        return flightAdminService.findBySeatIdAirplaneIdAndClassName(airplaneId, className);
     }
 
     // Create new record for taxes

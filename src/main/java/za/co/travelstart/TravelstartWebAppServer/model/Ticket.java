@@ -28,6 +28,9 @@ public class Ticket {
     @ManyToOne
     @JoinColumns({
             @JoinColumn(
+                    name = "airplane_id",
+                    referencedColumnName = "airplane_id"),
+            @JoinColumn(
                     name = "num",
                     referencedColumnName = "num"),
             @JoinColumn(

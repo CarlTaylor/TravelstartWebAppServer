@@ -8,6 +8,9 @@ import java.util.Objects;
 @Embeddable
 public class SeatId implements Serializable {
 
+    @Column(name="airplane_id")
+    private Long airplaneId;
+
     @Column(name="num")
     private Long num;
 
@@ -16,9 +19,14 @@ public class SeatId implements Serializable {
 
     public SeatId() {}
 
-    public SeatId(Long num, String className) {
+    public SeatId(Long airplaneId, Long num, String className) {
+        this.airplaneId = airplaneId;
         this.num = num;
         this.className = className;
+    }
+
+    public Long getAirplaneId() {
+        return airplaneId;
     }
 
     public Long getNum() {
@@ -34,12 +42,13 @@ public class SeatId implements Serializable {
         if (this == o) return true;
         if (!(o instanceof SeatId)) return false;
         SeatId that = (SeatId) o;
-        return Objects.equals(getNum(), that.getNum()) &&
+        return Objects.equals(getAirplaneId(), that.getAirplaneId()) &&
+                Objects.equals(getNum(), that.getNum()) &&
                 Objects.equals(getClassName(), that.getClassName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNum(), getClassName());
+        return Objects.hash(getAirplaneId(), getNum(), getClassName());
     }
 }
