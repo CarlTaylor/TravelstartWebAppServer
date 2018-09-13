@@ -175,7 +175,7 @@ public class FlightAdminService {
         return seatRepository.findById(id);
     }
 
-    public List<Seat> findBySeatIdAirplaneIdAndClassName(Long airplaneId, String className){
+    public List<Seat> findAllBySeatIdAirplaneIdAndSeatIdClassName(Long airplaneId, String className){
         return seatRepository.findAllBySeatIdAirplaneIdAndSeatIdClassName(airplaneId, className);
     }
 

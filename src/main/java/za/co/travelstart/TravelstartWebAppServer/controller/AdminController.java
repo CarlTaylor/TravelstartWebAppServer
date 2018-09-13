@@ -319,7 +319,7 @@ public class AdminController {
 
     // return one seat by its id
     @RequestMapping(path = "/seat/{airplaneId}/{className}/{num}", method = RequestMethod.GET, produces = "application/json")
-    public Seat getPricing(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className, @PathVariable("num") Long num){
+    public Seat getSeat(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className, @PathVariable("num") Long num){
         Optional<Seat> seat = flightAdminService.findSeatById(new SeatId(airplaneId, num, className));
         if(seat.isPresent()) {
             return seat.get();
@@ -330,7 +330,7 @@ public class AdminController {
     // List all seats by airplane id and class name.
     @RequestMapping(value = "/seat/{airplaneId}/{className}", method = RequestMethod.GET, produces = "application/json")
     public List findAllSeatsByAirplaneIdAndClassName(@PathVariable("airplaneId") Long airplaneId, @PathVariable("className") String className){
-        return flightAdminService.findBySeatIdAirplaneIdAndClassName(airplaneId, className);
+        return flightAdminService.findAllBySeatIdAirplaneIdAndSeatIdClassName(airplaneId, className);
     }
 
     // Create new record for taxes
